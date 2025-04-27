@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Professional Code Generator</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .input-section, .output-section {
+      margin: 20px 0;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    #previewArea {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px dashed #ccc;
+      min-height: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Professional Code Generator</h1>
+
+    <div class="input-section">
+      <label for="elementType">Element Type:</label>
+      <select id="elementType">
+        <option value="button">Button</option>
+        <option value="input">Input Field</option>
+        <option value="div">Div Block</option>
+      </select>
+
+      <label for="elementText">Text / Placeholder:</label>
+      <input type="text" id="elementText" placeholder="Enter text...">
+
+      <button id="generateBtn">Generate Code</button>
+    </div>
+
+    <div class="output-section">
+      <h2>Generated Code:</h2>
+      <textarea id="codeOutput" readonly></textarea>
+
+      <h2>Preview:</h2>
+      <div id="previewArea"></div>
+    </div>
+  </div>
+
+  <script>
+    const generateBtn = document.getElementById('generateBtn');
+    const codeOutput = document.getElementById('codeOutput');
+    const previewArea = document.getElementById('previewArea');
+
+    generateBtn.addEventListener('click', () => {
+      const elementType = document.getElementById('elementType').value;
+      const elementText = document.getElementById('elementText').value;
+
+      let generatedCode = '';
+
+      if (elementType === 'button') {
+        generatedCode = `<button>${elementText}</button>`;
+      } else if (elementType === 'input') {
+        generatedCode = `<input type="text" placeholder="${elementText}">`;
+      } else if (elementType === 'div') {
+        generatedCode = `<div>${elementText}</div>`;
+      }
+
+      codeOutput.value = generatedCode;
+      previewArea.innerHTML = generatedCode;
+    });
+  </script>
+</body>
+</html>
